@@ -1,0 +1,15 @@
+#!/bin/bash
+if [ "$#" -lt 1 ] ; then
+	echo ""
+	echo "usage: ff <query_string> [<file_types>]"
+	echo ""
+	exit
+fi
+
+filt=""
+if [ "$#" -gt 1 ] ; then
+	find -L . -type f -name "${2}" -print0 | xargs -0 grep -n "$1"
+else
+	find -L . -type f -print0 | xargs -0 grep -n "$1"
+fi
+
